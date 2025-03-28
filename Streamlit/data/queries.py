@@ -18,13 +18,3 @@ def get_users(cursor):
     cursor.execute("SELECT * FROM users;")
     return cursor.fetchall()
 
-def get_survey_responses(cursor, survey_id):
-    """Obtiene las respuestas para una encuesta específica."""
-    cursor.execute("""
-        SELECT a.*, q.question_text, u.name as user_name
-        FROM answers a
-        JOIN questions q ON a.question_id = q.id
-        JOIN users u ON a.user_id = u.id
-        WHERE a.survey_id = %s;
-    """, (survey_id,))
-    return cursor.fetchall() 

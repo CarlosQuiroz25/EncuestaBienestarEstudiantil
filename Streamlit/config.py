@@ -13,8 +13,3 @@ DB_CONFIG = {
     'database': os.getenv('DB_NAME')
 }
 
-# Configuración de la aplicación
-APP_CONFIG = {
-    'title': 'Análisis de Encuestas de Bienestar Estudiantil',
-    'description': 'Dashboard para análisis de respuestas de encuestas de bienestar estudiantil'
-} 
