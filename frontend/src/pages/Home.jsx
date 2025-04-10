@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-import { useState } from "react";
-export function Home({user, setUser}){
-    const handleLogout= ()=>{
-        setUser([])
-    }
-
-    return(
-        <div>
-            <h1>Bienvenido</h1>
-            <h2>{user}</h2>
-            <button onClick={handleLogout}>Cerrar sesion</button>
-        </div>
-    )
-}
-
-=======
 import { CardServicio } from '@/components/CardServicio';
 
 export const Home = () => {
@@ -70,4 +53,3 @@ export const Home = () => {
     );
   };
   
->>>>>>> main
