@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-export const Header = () => {
-    return (
-        <header className="title"> 
-            <p className="title-2">Bienestar <span>Estudiantil</span> </p>
-        </header>
-    )
-}
-=======
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes, FaUserCircle, FaSearch, FaChevronDown, FaSignOutAlt } from 'react-icons/fa';
@@ -226,4 +217,3 @@ export const Header = () => {
     </header>
   );
 };
->>>>>>> main
