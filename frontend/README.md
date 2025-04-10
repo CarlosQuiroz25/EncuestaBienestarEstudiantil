@@ -33,13 +33,12 @@ Este es un proyecto frontend desarrollado con **React y Vite** para la materia W
 - [ ] Información sobre bienestar estudiantil
 - [ ] Recursos y herramientas para estudiantes
 
-
 ## 👥 Integrantes
 
-- Jamilton Hoyos, jamilton.prog@gmial.com   100066102
-- Carlos Quiroz, quirozcm@gmail.com     1007104601
+- Jamilton Hoyos, jamilton.prog@gmial.com 100066102
+- Carlos Quiroz, quirozcm@gmail.com 1007104601
 - Julian Esneyder Carmona, 00sneyder00@gmail.com 1035233461
-- Eimer Santiago Menco, eimermenco1996@gmail.com 10665681551 
+- Eimer Santiago Menco, eimermenco1996@gmail.com 10665681551
 
 ## 📄 Licencia
 
