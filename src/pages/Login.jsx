@@ -1,53 +1,45 @@
-import { useState } from "react"
-import './login.css'
-  
+import { useState } from "react";
+import { Input } from "../components/input/input";
+import { Button } from "../components/botton/botton";
+
 export function Login({ setUser }) {
-    const [nombre, setNombre] = useState("")
-    const [contraseña, setContraseña] = useState("")
-    const [error, setError] = useState(false)
+  const [nombre, setNombre] = useState("");
+  const [contraseña, setContraseña] = useState("");
+  const [error, setError] = useState(false);
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-        if (nombre === "" || contraseña === "") {
-            setError(true)
-            return
-        }
-
-        setError(false)
-
-        setUser([nombre])
-
+    if (nombre === "" || contraseña === "") {
+      setError(true);
+      return;
     }
-    
-    
-   
-    return (
 
-        <section className="constainer">
+    setError(false);
+    setUser([nombre]);
+  };
 
-            <h1>Inicio de sesión</h1>
-
-            <form className="login"
-                onSubmit={handleSubmit}
-            >
-                <h3  className="inp">Correo</h3 >
-                <input
-                    type="text"
-                    value={nombre}
-                    onChange={e => setNombre(e.target.value)}
-                />
-                <h3 className="inp">Contraseña</h3>
-                <input
-
-                    type="password"
-                    value={contraseña}
-                    onChange={e => setContraseña(e.target.value)}
-                />
-                <button>Login</button>
-            </form>
-            {error && <p>Todo los campos son obligatorios</p>}
-        </section >
-    )
+  return (
+    <main className="flex flex-col items-center justify-center h-screen bg-white-smoke">
+      <section className="bg-marian-blue/30 flex flex-col gap-10 backdrop-filter backdrop-blur-lg min-w-96 p-10 rounded-lg shadow-lg">
+        <h1 className="font-bold text-2xl">Inicio de sesión</h1>
+        <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+          <Input
+            label="Nombre"
+            type="text"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+          />
+          <Input
+            label="Contraseña"
+            type="password"
+            value={contraseña}
+            onChange={(e) => setContraseña(e.target.value)}
+          />
+          <Button>Login</Button>
+        </form>
+        {error && <p>Todo los campos son obligatorios</p>}
+      </section>
+    </main>
+  );
 }
-
