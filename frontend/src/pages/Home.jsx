@@ -28,7 +28,7 @@ export const Home = () => {
         {/* Sección de Bienvenida */}
         <section
           className="h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
-          style={{ backgroundImage: "url('/imagen1.jpg')" }}
+          style={{ backgroundImage: "url('/assets/imagen1.jpg')" }}
         >
           <div className="bg-white bg-opacity-70 p-9 rounded-lg text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">Bienestar Integral para Estudiantes</h1>
