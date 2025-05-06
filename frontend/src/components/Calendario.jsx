@@ -1,90 +1,87 @@
 import { useState } from 'react';
-import { 
-  format, 
-  isToday, 
-  isSameDay, 
-  startOfMonth, 
-  endOfMonth, 
-  startOfWeek, 
-  endOfWeek, 
-  addDays, 
-  isSameMonth, 
-  subMonths, 
-  addMonths,
-  parseISO
-} from 'date-fns';
-import { es } from 'date-fns/locale';
+import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, isSameMonth, isSameDay, addMonths, subMonths } from 'date-fns';
+import es from 'date-fns/locale/es';
 
 export const Calendario = ({ citas, onSeleccionFecha }) => {
-  const [mesActual, setMesActual] = useState(new Date());
+  const [fechaActual, setFechaActual] = useState(new Date());
 
-  // Generar días del mes
-  const diasMes = [];
-  const inicioMes = startOfMonth(mesActual);
-  const finMes = endOfMonth(mesActual);
-  
-  let diaActual = startOfWeek(inicioMes);
-  while (diaActual <= endOfWeek(finMes)) {
-    diasMes.push(diaActual);
-    diaActual = addDays(diaActual, 1);
-  }
+  const renderHeader = () => {
+    return (
+      <div className="flex justify-between items-center mb-4">
+        <button onClick={() => setFechaActual(subMonths(fechaActual, 1))} className="text-gray-600 hover:text-gray-800">
+          &lt;
+        </button>
+        <h2 className="text-lg font-semibold text-gray-800">
+          {format(fechaActual, 'MMMM yyyy', { locale: es })}
+        </h2>
+        <button onClick={() => setFechaActual(addMonths(fechaActual, 1))} className="text-gray-600 hover:text-gray-800">
+          &gt;
+        </button>
+      </div>
+    );
+  };
 
-  // Verificar si un día tiene citas
-  const tieneCitas = (fecha) => {
-    return citas.some(cita => isSameDay(parseISO(cita.fecha), fecha));
+  const renderDays = () => {
+    const days = [];
+    const startDate = startOfWeek(fechaActual, { weekStartsOn: 1 });
+    for (let i = 0; i < 7; i++) {
+      days.push(
+        <div key={i} className="text-center text-gray-600 font-medium">
+          {format(addDays(startDate, i), 'EEEEEE', { locale: es })}
+        </div>
+      );
+    }
+    return <div className="grid grid-cols-7 mb-2">{days}</div>;
+  };
+
+  const renderCells = () => {
+    const monthStart = startOfMonth(fechaActual);
+    const monthEnd = endOfMonth(monthStart);
+    const startDate = startOfWeek(monthStart, { weekStartsOn: 1 });
+    const endDate = endOfWeek(monthEnd, { weekStartsOn: 1 });
+
+    const rows = [];
+    let days = [];
+    let day = startDate;
+    let formattedDate = '';
+
+    while (day <= endDate) {
+      for (let i = 0; i < 7; i++) {
+        formattedDate = format(day, 'd');
+        const cloneDay = day;
+        const hasCita = citas.some((cita) => isSameDay(new Date(cita.fecha), cloneDay));
+        days.push(
+          <div
+            className={`p-2 text-center cursor-pointer rounded-lg ${
+              !isSameMonth(day, monthStart)
+                ? 'text-gray-400'
+                : isSameDay(day, new Date())
+                ? 'bg-blue-500 text-white'
+                : 'text-gray-800 hover:bg-blue-100'
+            } ${hasCita ? 'border border-blue-500' : ''}`}
+            key={day}
+            onClick={() => onSeleccionFecha(cloneDay)}
+          >
+            <span>{formattedDate}</span>
+          </div>
+        );
+        day = addDays(day, 1);
+      }
+      rows.push(
+        <div className="grid grid-cols-7 gap-1" key={day}>
+          {days}
+        </div>
+      );
+      days = [];
+    }
+    return <div className="space-y-1">{rows}</div>;
   };
 
   return (
     <div className="bg-white p-6 rounded-lg shadow">
-      {/* Controles del calendario */}
-      <div className="flex justify-between items-center mb-4">
-        <button 
-          onClick={() => setMesActual(subMonths(mesActual, 1))}
-          className="p-2 hover:bg-gray-100 rounded"
-        >
-          ◀
-        </button>
-        <h2 className="font-bold text-xl">
-          {format(mesActual, 'MMMM yyyy', { locale: es })}
-        </h2>
-        <button 
-          onClick={() => setMesActual(addMonths(mesActual, 1))}
-          className="p-2 hover:bg-gray-100 rounded"
-        >
-          ▶
-        </button>
-      </div>
-
-      {/* Grid de días */}
-      <div className="grid grid-cols-7 gap-2">
-        {/* Nombres de días */}
-        {['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'].map(dia => (
-          <div key={dia} className="text-center font-medium py-2">
-            {dia}
-          </div>
-        ))}
-
-        {/* Días del mes */}
-        {diasMes.map((dia, index) => {
-          const esDiaMes = isSameMonth(dia, mesActual);
-          const esHoy = isToday(dia);
-          const tieneCita = tieneCitas(dia);
-
-          return (
-            <button
-              key={index}
-              onClick={() => esDiaMes && onSeleccionFecha(dia)}
-              className={`p-2 rounded-full text-center h-10 w-10 flex items-center justify-center 
-                ${!esDiaMes ? 'text-gray-300' : ''}
-                ${esHoy ? 'bg-indigo-100 text-indigo-700' : ''}
-                ${tieneCita ? 'border-2 border-indigo-400' : ''}
-                hover:bg-indigo-50 transition-colors`}
-            >
-              {format(dia, 'd')}
-            </button>
-          );
-        })}
-      </div>
+      {renderHeader()}
+      {renderDays()}
+      {renderCells()}
     </div>
   );
 };
