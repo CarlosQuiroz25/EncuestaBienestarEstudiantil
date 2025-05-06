@@ -1,4 +1,4 @@
-import { CardServicio } from '@/components/CardServicio';
+import { CardServicio } from '@/components/CardServicio'
 
 export const Home = () => {
   const serviciosDestacados = [

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes, FaUserCircle, FaSearch, FaChevronDown, FaSignOutAlt } from 'react-icons/fa';
+import { AuthContext } from '../context/AuthContext';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);

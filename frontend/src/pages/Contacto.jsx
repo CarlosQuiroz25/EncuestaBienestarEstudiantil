@@ -14,19 +14,19 @@ export const Contacto = () => {
 
       {/* Contenido */}
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 space-y-12 lg:space-y-0">
           {/* Formulario */}
-          <div className="bg-white p-6 md:p-8 rounded-xl shadow-md">
+          <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
             <h2 className="text-2xl font-bold mb-6 text-gray-800">Envía un mensaje</h2>
             <FormContacto />
           </div>
 
           {/* Información de contacto */}
           <div>
-            <div className="bg-white p-6 md:p-8 rounded-xl shadow-md mb-8">
+            <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 mb-8">
               <h2 className="text-2xl font-bold mb-6 text-gray-800">Información de contacto</h2>
-              
-              <div className="space-y-4">
+              <div className="space-y-6">
+                {/* Dirección */}
                 <div className="flex items-start">
                   <div className="bg-indigo-100 p-2 rounded-full mr-4">
                     <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -36,10 +36,11 @@ export const Contacto = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-800">Dirección</h3>
-                    <p className="text-gray-600">Dg. 50A #38 20 Piso 5, Hermosa Provincia, Bello, Antioquia</p>
+                    <p className="text-gray-700 text-sm">Dg. 50A #38 20 Piso 5, Hermosa Provincia, Bello, Antioquia</p>
                   </div>
                 </div>
 
+                {/* Teléfono */}
                 <div className="flex items-start">
                   <div className="bg-indigo-100 p-2 rounded-full mr-4">
                     <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,11 +49,12 @@ export const Contacto = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-800">Teléfono</h3>
-                    <p className="text-gray-600">+51 123 456 789</p>
-                    <p className="text-gray-600">+51 987 654 321</p>
+                    <p className="text-gray-700 text-sm">+51 123 456 789</p>
+                    <p className="text-gray-700 text-sm">+51 987 654 321</p>
                   </div>
                 </div>
 
+                {/* Email */}
                 <div className="flex items-start">
                   <div className="bg-indigo-100 p-2 rounded-full mr-4">
                     <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -61,15 +63,15 @@ export const Contacto = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-800">Email</h3>
-                    <p className="text-gray-600">contacto@bienestarestudiantil.edu</p>
-                    <p className="text-gray-600">soporte@bienestarestudiantil.edu</p>
+                    <p className="text-gray-700 text-sm">contacto@bienestarestudiantil.edu</p>
+                    <p className="text-gray-700 text-sm">soporte@bienestarestudiantil.edu</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Mapa */}
-            <div className="bg-white p-6 md:p-8 rounded-xl shadow-md">
+            <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
               <h2 className="text-2xl font-bold mb-6 text-gray-800">Nuestra ubicación</h2>
               <MapaUbicacion />
             </div>
