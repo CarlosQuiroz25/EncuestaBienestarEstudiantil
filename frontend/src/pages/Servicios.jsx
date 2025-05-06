@@ -24,6 +24,38 @@ export const Servicios = () => {
       icono: '⏰',
       destacado: false
     },
+    {
+      id: 3,
+      titulo: 'Sesión de Bienestar Integral',
+      descripcion: 'Actividades para mejorar tu salud física y emocional.',
+      categoria: 'bienestar',
+      icono: '🧘',
+      destacado: false,
+    },
+    {
+      id: 4,
+      titulo: 'Taller de Mindfulness',
+      descripcion: 'Aprende a reducir el estrés y mejorar tu enfoque a través de técnicas de atención plena.',
+      categoria: 'bienestar',
+      icono: '🧠',
+      destacado: false,
+    },
+    {
+      id: 5,
+      titulo: 'Grupo de Apoyo Emocional',
+      descripcion: 'Espacios grupales donde puedes compartir experiencias y recibir apoyo en un entorno seguro.',
+      categoria: 'salud',
+      icono: '🤝',
+      destacado: false,
+    },
+    {
+      id: 6,
+      titulo: 'Tutorías Personalizadas',
+      descripcion: 'Recibe ayuda individual en materias específicas para mejorar tu rendimiento académico.',
+      categoria: 'academico',
+      icono: '📘',
+      destacado: false,
+    },
     // Agrega más servicios según necesites...
   ];
 
@@ -35,7 +67,7 @@ export const Servicios = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-indigo-600 text-white py-12">
+      <div className="bg-white-600 text-marian-blue py-12">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold mb-4">Nuestros Servicios</h1>
           <p className="text-xl opacity-90">Apoyo integral para tu desarrollo universitario</p>
