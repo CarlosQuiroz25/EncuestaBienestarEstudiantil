@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { Button } from '../components/botton/botton';
 
 const SurveyForm = () => {
   const [openSection, setOpenSection] = useState(null);
@@ -105,14 +106,14 @@ const SurveyForm = () => {
   );
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-8 bg-gradient-to-b from-blue-50 to-white rounded-3xl shadow-xl space-y-6">
-      <h1 className="text-4xl font-bold text-center text-blue-700 mb-8">Encuesta de Bienestar Estudiantil</h1>
+    <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-8 bg-gradient-to-b from-gray-100 to-white rounded-3xl shadow-xl space-y-6">
+      <h1 className="text-3xl font-bold text-center text-gray-700 mb-8">Encuesta de Bienestar Estudiantil</h1>
 
       {/* Información Demográfica */}
       <SectionContainer id="demografica" title="Información Demográfica">
         <div className="grid gap-6">
           {renderInput('¿Cuál es tu edad?', 'edad', 'number')}
-          {renderInput('¿Con qué género te identificas?', 'genero', 'select', false, ['masculino', 'femenino', 'otro', 'prefiero_no_decirlo'])}
+          {renderInput('¿Con qué género te identificas?', 'genero', 'select', false, ['masculino', 'femenino', 'No binario', 'prefiero_no_decirlo'])}
           {renderInput('¿En qué programa académico estás matriculado?', 'programa')}
         </div>
       </SectionContainer>
@@ -158,12 +159,10 @@ const SurveyForm = () => {
         </div>
       </SectionContainer>
 
-      <button
-        type="submit"
-        className="w-full bg-blue-600 text-white text-lg py-3 rounded-xl font-bold hover:bg-blue-700 transition-shadow hover:shadow-lg"
-      >
-        Enviar Encuesta
-      </button>
+      <Button type="submit">
+  Enviar Encuesta
+</Button>
+
     </form>
   );
 };
