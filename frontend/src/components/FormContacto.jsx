@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button } from './botton/botton';
 
 export const FormContacto = () => {
   const [formData, setFormData] = useState({
@@ -12,12 +13,10 @@ export const FormContacto = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí iría la lógica para enviar el formulario a tu backend
     console.log('Formulario enviado:', formData);
     setEnviado(true);
     setFormData({ nombre: '', email: '', asunto: '', mensaje: '' });
-    
-    // Resetear mensaje después de 5 segundos
+
     setTimeout(() => setEnviado(false), 5000);
   };
 
@@ -37,7 +36,7 @@ export const FormContacto = () => {
           type="text"
           id="nombre"
           value={formData.nombre}
-          onChange={(e) => setFormData({...formData, nombre: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
           required
         />
@@ -51,7 +50,7 @@ export const FormContacto = () => {
           type="email"
           id="email"
           value={formData.email}
-          onChange={(e) => setFormData({...formData, email: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
           required
         />
@@ -64,7 +63,7 @@ export const FormContacto = () => {
         <select
           id="asunto"
           value={formData.asunto}
-          onChange={(e) => setFormData({...formData, asunto: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, asunto: e.target.value })}
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
           required
         >
@@ -84,20 +83,13 @@ export const FormContacto = () => {
           id="mensaje"
           rows="5"
           value={formData.mensaje}
-          onChange={(e) => setFormData({...formData, mensaje: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })}
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
           required
         ></textarea>
       </div>
 
-      <div>
-        <button
-          type="submit"
-          className="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg hover:bg-indigo-700 transition-colors font-medium"
-        >
-          Enviar mensaje
-        </button>
-      </div>
+      <Button type="submit">Enviar mensaje</Button>
     </form>
   );
 };
