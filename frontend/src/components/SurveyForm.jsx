@@ -9,11 +9,13 @@ const SurveyForm = () => {
     genero: '',
     programa: '',
     actividadFisica: '',
+    manejoestres: '',
     dieta: '',
     pantalla: '',
     suenio: '',
     actividadPreferida: '',
     estres: '',
+    rendimientoActual: '',
     estadoAnimo: '',
     concentracion: '',
     apoyoEmocional: '',
@@ -25,6 +27,7 @@ const SurveyForm = () => {
     relacionesCompanieros: '',
     circuloSocial: '',
     comunidadEstudiantil: '',
+    dificualtadSocial: '',
   });
 
   const toggleSection = (id) => {
@@ -121,10 +124,10 @@ const SurveyForm = () => {
       {/* Salud Física */}
       <SectionContainer id="fisica" title="Salud Física">
         <div className="grid gap-6">
-          {renderInput('¿Con qué frecuencia realizas actividad física?', 'actividadFisica', 'select', false, ['diario', '3-4', '1-2', 'nunca'])}
+          {renderInput('¿Con qué frecuencia realizas actividad física?', 'actividadFisica', 'select', false, ['Diariamente', '3-4 veces por semana', '1-2 veces por semana', 'Casi nunca'])}
           {renderInput('¿Cómo describirías tu dieta?', 'dieta', 'select', false, ['muy_saludable', 'saludable', 'regular', 'poco_saludable'])}
-          {renderInput('¿Cuánto tiempo pasas frente a una pantalla al día?', 'pantalla', 'select', false, ['menos3', '3-6', 'mas6', 'todo_dia'])}
-          {renderInput('¿Cuántas horas duermes en promedio por noche?', 'suenio', 'select', false, ['menos5', '5-6', '7-8', 'mas8'])}
+          {renderInput('¿Cuánto tiempo pasas frente a una pantalla al día?', 'pantalla', 'select', false, ['Menos de 3 horas', 'Entre 3 y 6 horas', 'Más de 6 horas', 'Casi todo el día'])}
+          {renderInput('¿Cuántas horas duermes en promedio por noche?', 'suenio', 'select', false, ['Menos de 5 horas', '5-6 horas', '7-8 horas', 'Más de 8 horas'])}
           {renderInput('¿Qué tipo de actividad física disfrutas más?', 'actividadPreferida', 'text', true)}
         </div>
       </SectionContainer>
@@ -136,16 +139,18 @@ const SurveyForm = () => {
           {renderInput('¿Cómo describirías tu estado de ánimo general?', 'estadoAnimo', 'select', false, ['muy_positivo', 'positivo', 'neutral', 'negativo'])}
           {renderInput('¿Tienes dificultades para concentrarte?', 'concentracion', 'select', false, ['nunca', 'ocasionalmente', 'frecuentemente', 'siempre'])}
           {renderInput('¿Tienes acceso a apoyo emocional si lo necesitas?', 'apoyoEmocional', 'select', false, ['siempre', 'a_veces', 'rara_vez', 'nunca'])}
+          {renderInput('¿Qué actividades realizas para manejar el estrés?', 'manejoestres', 'text', true)}
         </div>
       </SectionContainer>
 
       {/* Hábitos de Estudio */}
       <SectionContainer id="habitos" title="Hábitos de Estudio">
         <div className="grid gap-6">
-          {renderInput('¿Cuántas horas estudias al día?', 'horasEstudio', 'select', false, ['menos1', '1-2', '3-4', 'mas4'])}
+          {renderInput('¿Cómo calificarías tu rendimiento académico actual?', 'rendimientoActual', 'select', false, ['Excelente', 'Bueno', 'Regular', 'Deficiente'])}
+          {renderInput('¿Cuántas horas estudias al día?', 'horasEstudio', 'select', false, ['Menos de 1 hora', '1-2 horas', '3-4 horas', 'Más de 4 horas'])}
           {renderInput('¿Dónde sueles estudiar?', 'lugarEstudio', 'select', false, ['casa', 'biblioteca', 'aula', 'otro'])}
           {renderInput('¿Con qué frecuencia usas tecnología para estudiar?', 'usoTecnologia', 'select', false, ['nunca', 'a_veces', 'frecuentemente', 'siempre'])}
-          {renderInput('¿Qué técnicas de estudio utilizas?', 'tecnicasEstudio', 'text', true)}
+          {renderInput('¿Qué técnicas utilizas para organizar tu tiempo de estudio?', 'tecnicasEstudio', 'text', true)}
         </div>
       </SectionContainer>
 
@@ -156,6 +161,7 @@ const SurveyForm = () => {
           {renderInput('¿Cómo describirías tu relación con tus compañeros?', 'relacionesCompanieros', 'select', false, ['muy_buena', 'buena', 'neutral', 'mala'])}
           {renderInput('¿Tienes un círculo social en la universidad?', 'circuloSocial', 'select', false, ['amplio', 'moderado', 'pequeño', 'ninguno'])}
           {renderInput('¿Te sientes parte de la comunidad estudiantil?', 'comunidadEstudiantil', 'select', false, ['totalmente', 'parcialmente', 'poco', 'nada'])}
+          {renderInput('¿Has enfrentado dificultades para socializar con tus compañeros? Si es así, ¿cuáles crees que han sido las causas?', 'dificualtadSocial', 'text', true)}
         </div>
       </SectionContainer>
 
