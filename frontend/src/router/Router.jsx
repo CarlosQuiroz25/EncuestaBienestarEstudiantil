@@ -1,10 +1,17 @@
-import Layout from "../layuot";
+import Layout from "../Layout";
 import { Home } from '../pages/Home';
 import { Login } from '../pages/Login';
 import { Servicios } from '../pages/Servicios';
 import { Agenda } from '../pages/Agenda';
 import { Contacto } from '../pages/Contacto';
 import Encuesta from '../pages/Encuesta';
+import { RecuperarContrasena } from "../pages/RecuperarContrasena";
+import { NoEncontrado } from "../pages/NoEncontrado";
+import { ConfirmacionRecuperacion } from "../pages/ConfirmacionRecuperacion";
+import { PanelAdmin } from "../pages/PanelAdmin";
+import Register from "../pages/Register";
+
+
 
 export const routes = [
   {
@@ -13,7 +20,7 @@ export const routes = [
       {
         path: "/",
         element: <Home />,
-      },{
+      }, {
         path: "/login",
         element: <Login />,
       },
@@ -34,9 +41,29 @@ export const routes = [
         element: <Encuesta />,
       },
       {
+        path: "/recuperar-contrasena",
+        element: <RecuperarContrasena />,
+      },
+      {
+        path: "*",
+        element:<NoEncontrado/>
+      },
+      {
+        path: "/confirmacion-recuperacion",
+        element: <ConfirmacionRecuperacion />,
+      },
+      {
+        path: "/panel",
+        element:<PanelAdmin/>,
+      },
+      {
+        path: "/registro",
+        element:<Register/>,
+      },
+      {
         path: "*",
         element: <div className="text-center py-20"><h1 className="text-4xl font-bold">404 - Página no encontrada</h1></div>,
-      }
+      },
     ],
   },
 ];
