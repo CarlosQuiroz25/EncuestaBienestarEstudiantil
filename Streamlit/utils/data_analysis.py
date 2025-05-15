@@ -17,7 +17,7 @@ DATASETS_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static
 
 def cargar_datos():
     """Carga los datos de los archivos CSV y los devuelve como DataFrames.
-    Solo carga las columnas específicas solicitadas."""
+    Solo carga las columnas específicas."""
     try:
         # Cargar los archivos CSV con columnas específicas
         encuestas_df = pd.read_csv(
@@ -48,8 +48,7 @@ def obtener_estadisticas_basicas(encuestas_df, preguntas_df, respuestas_df):
     estadisticas = {
         'total_encuestas': len(encuestas_df),
         'total_preguntas': len(preguntas_df),
-        'total_respuestas': len(respuestas_df),
-        'preguntas_por_tipo': preguntas_df['tipo_pregunta'].value_counts().to_dict() if 'tipo_pregunta' in preguntas_df.columns else {}
+        'total_respuestas': len(respuestas_df)
     }
     return estadisticas
 
