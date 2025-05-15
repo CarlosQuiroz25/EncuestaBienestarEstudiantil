@@ -1,0 +1,6 @@
+﻿"id";"activa";"created_at";"descripcion";"fecha_fin";"fecha_inicio";"titulo";"updated_at";"created_by"
+"1";"1";"2025-05-05 20:53:15,361195";"Encuesta para recopilar datos demográficos básicos de los estudiantes";"2025-06-05 23:59:59,000000";"2025-05-05 00:00:00,000000";"Encuesta Demográfica de Estudiantes";"2025-05-05 20:53:15,361195";"1"
+"2";"1";"2025-05-09 19:49:09,427020";"Encuesta para recopilar datos de la salud física de los estudiantes";"2025-10-05 23:59:59,000000";"2025-09-05 00:00:00,000000";"Encuesta De Salud Física";"2025-05-09 19:49:09,427020";"1"
+"3";"1";"2025-05-09 21:20:09,633822";"Encuesta para recopilar datos de la salud mental de los estudiantes";"2025-10-05 23:59:59,000000";"2025-09-05 00:00:00,000000";"Encuesta De Salud Mental";"2025-05-09 21:20:09,633822";"1"
+"4";"1";"2025-05-12 20:17:03,165502";"Encuesta para recopilar datos de los hábitos de estudio de los estudiantes";"2025-06-05 23:59:59,000000";"2025-05-05 00:00:00,000000";"Encuesta de Hábitos de estudio";"2025-05-12 20:17:03,165502";"1"
+"5";"1";"2025-05-12 21:02:33,714541";"Encuesta para recopilar datos de la vida social de los estudiantes";"2025-06-05 23:59:59,000000";"2025-05-05 00:00:00,000000";"Encuesta de Vida Social";"2025-05-12 21:02:33,714541";"1"
