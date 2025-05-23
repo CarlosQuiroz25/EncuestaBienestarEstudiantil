@@ -9,9 +9,8 @@ import { RecuperarContrasena } from "../pages/RecuperarContrasena";
 import { NoEncontrado } from "../pages/NoEncontrado";
 import { ConfirmacionRecuperacion } from "../pages/ConfirmacionRecuperacion";
 import { PanelAdmin } from "../pages/PanelAdmin";
-import Register from "../pages/Register";
-
-
+import { Register } from '../pages/Register';
+import { AuthProvider } from '../context/AuthContext';
 
 export const routes = [
   {
@@ -57,7 +56,7 @@ export const routes = [
         element:<PanelAdmin/>,
       },
       {
-        path: "/registro",
+        path: "/register",
         element:<Register/>,
       },
       {

@@ -1,79 +1,95 @@
-import { FormContacto } from '../components/FormContacto';
-import { MapaUbicacion } from '../components/MapaUbicacion';
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaComments } from 'react-icons/fa'; // Importamos iconos de Font Awesome
+import { FormContacto } from '../components/FormContacto'; // Asumo que este componente tiene sus propios estilos
+import { MapaUbicacion } from '../components/MapaUbicacion'; // Asumo que este componente maneja la visualización del mapa
 
 export const Contacto = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8 h-full pb-40"> {/* Fondo degradado suave */}
       {/* Hero Section */}
-      <div className="bg-white-600 text-marian-blue py-12">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Contáctanos</h1>
-          <p className="text-lg">Estamos aquí para ayudarte</p>
+      <div className="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-16 rounded-xl shadow-2xl mb-12 text-center transform -translate-y-4 animate-fade-in-down"> {/* Cabecera impactante */}
+        <div className="container mx-auto px-4">
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+            <FaComments className="inline-block mr-4 text-blue-200" /> Contáctanos
+          </h1>
+          <p className="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto">
+            Estamos aquí para ayudarte. No dudes en comunicarte con nosotros para cualquier consulta o apoyo.
+          </p>
         </div>
       </div>
 
       {/* Contenido principal */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16"> {/* Mayor espacio entre columnas */}
           {/* Formulario de contacto */}
-          <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <h2 className="text-2xl font-bold mb-6 text-gray-800">Envía un mensaje</h2>
+          <div className="bg-white p-8 md:p-10 rounded-xl shadow-xl border border-blue-100 transform hover:scale-[1.005] transition-all duration-300 animate-slide-in-left">
+            <h2 className="text-3xl font-bold mb-8 text-gray-900 flex items-center">
+              <FaEnvelope className="mr-4 text-blue-600" /> Envíanos un mensaje
+            </h2>
             <FormContacto />
           </div>
 
-          {/* Información de contacto + Mapa */}
-          <div>
-            <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 mb-8">
-              <h2 className="text-2xl font-bold mb-6 text-gray-800">Información de contacto</h2>
-              <div className="space-y-6">
+          {/* Información de contacto y Mapa */}
+          <div className="space-y-10"> {/* Espacio vertical uniforme */}
+            {/* Información de contacto */}
+            <div className="bg-white p-8 md:p-10 rounded-xl shadow-xl border border-indigo-100 transform hover:scale-[1.005] transition-all duration-300 animate-fade-in">
+              <h2 className="text-3xl font-bold mb-8 text-gray-900 flex items-center">
+                <FaPhone className="mr-4 text-indigo-600" /> Información de Contacto
+              </h2>
+              <div className="space-y-6"> {/* Espacio entre cada detalle de contacto */}
                 {/* Dirección */}
-                <div className="flex items-start">
-                  <div className="bg-indigo-100 p-2 rounded-full mr-4">
-                    <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
+                <div className="flex items-start p-4 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors duration-200">
+                  <div className="bg-indigo-200 p-3 rounded-full mr-5 shadow-md">
+                    <FaMapMarkerAlt className="w-7 h-7 text-indigo-700" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-800">Dirección</h3>
-                    <p className="text-gray-700 text-sm">Dg. 50A #38 20 Piso 5, Hermosa Provincia, Bello, Antioquia</p>
+                    <h3 className="font-bold text-lg text-gray-900 mb-1">Nuestra Sede</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Dg. 50A #38 20 Piso 5,<br /> Hermosa Provincia, Bello, Antioquia
+                    </p>
                   </div>
                 </div>
 
                 {/* Teléfono */}
-                <div className="flex items-start">
-                  <div className="bg-indigo-100 p-2 rounded-full mr-4">
-                    <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
+                <div className="flex items-start p-4 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors duration-200">
+                  <div className="bg-indigo-200 p-3 rounded-full mr-5 shadow-md">
+                    <FaPhone className="w-7 h-7 text-indigo-700" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-800">Teléfono</h3>
-                    <p className="text-gray-700 text-sm">+51 123 456 789</p>
-                    <p className="text-gray-700 text-sm">+51 987 654 321</p>
+                    <h3 className="font-bold text-lg text-gray-900 mb-1">Llámanos</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      +51 123 456 789<br />
+                      +51 987 654 321
+                    </p>
                   </div>
                 </div>
 
                 {/* Email */}
-                <div className="flex items-start">
-                  <div className="bg-indigo-100 p-2 rounded-full mr-4">
-                    <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
+                <div className="flex items-start p-4 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors duration-200">
+                  <div className="bg-indigo-200 p-3 rounded-full mr-5 shadow-md">
+                    <FaEnvelope className="w-7 h-7 text-indigo-700" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-800">Email</h3>
-                    <p className="text-gray-700 text-sm">contacto@bienestarestudiantil.edu</p>
-                    <p className="text-gray-700 text-sm">soporte@bienestarestudiantil.edu</p>
+                    <h3 className="font-bold text-lg text-gray-900 mb-1">Envía un Email</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      contacto@bienestarestudiantil.edu<br />
+                      soporte@bienestarestudiantil.edu
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Mapa */}
-            <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <h2 className="text-2xl font-bold mb-6 text-gray-800">Nuestra ubicación</h2>
-              <MapaUbicacion />
+            <div className="bg-white p-8 md:p-10 rounded-xl shadow-xl border border-gray-100 transform hover:scale-[1.005] transition-all duration-300 animate-slide-in-right">
+              <h2 className="text-3xl font-bold mb-8 text-gray-900 flex items-center">
+                <FaMapMarkerAlt className="mr-4 text-blue-600" /> Dónde Encontrarnos
+              </h2>
+              <div className="h-80 w-full rounded-lg overflow-hidden border border-gray-200 shadow-inner"> {/* Contenedor del mapa */}
+                <MapaUbicacion />
+              </div>
+              <p className="text-sm text-gray-600 mt-4 text-center">
+                Haz clic en el mapa para explorar nuestra ubicación.
+              </p>
             </div>
           </div>
         </div>
