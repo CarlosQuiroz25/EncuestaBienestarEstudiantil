@@ -1,4 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 export const CardServicio = ({ servicio }) => {
+  const navigate = useNavigate();
+
+  const handleVerDetalles = () => {
+    navigate(`/servicios/${servicio.id}`);
+  };
+
   return (
     <div className={`bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 border-l-4 ${servicio.destacado ? 'border-indigo-500' : 'border-transparent'}`}>
       <div className="p-6">
@@ -13,7 +21,10 @@ export const CardServicio = ({ servicio }) => {
           <span className="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">
             {servicio.categoria === 'salud' ? 'Salud' : 'Académico'}
           </span>
-          <button className="text-indigo-600 hover:text-indigo-800 font-medium cursor-pointer">
+          <button
+            className="text-indigo-600 hover:text-indigo-800 font-medium"
+            onClick={handleVerDetalles}
+          >
             Ver detalles →
           </button>
         </div>

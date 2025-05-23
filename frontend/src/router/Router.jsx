@@ -10,7 +10,7 @@ import { NoEncontrado } from "../pages/NoEncontrado";
 import { ConfirmacionRecuperacion } from "../pages/ConfirmacionRecuperacion";
 import { PanelAdmin } from "../pages/PanelAdmin";
 import { Register } from '../pages/Register';
-import { AuthProvider } from '../context/AuthContext';
+import DetalleServicio from "../pages/DetallesServicio";
 
 export const routes = [
   {
@@ -59,6 +59,10 @@ export const routes = [
         path: "/register",
         element:<Register/>,
       },
+        {
+       path: "/servicios/:id", 
+       element: <DetalleServicio />,
+       },
       {
         path: "*",
         element: <div className="text-center py-20"><h1 className="text-4xl font-bold">404 - Página no encontrada</h1></div>,
