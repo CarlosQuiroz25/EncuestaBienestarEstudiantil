@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import { Input } from '../components/input/input';
 import { Button } from '../components/botton/botton';
 import { Link, useNavigate } from 'react-router-dom';
-import { RecuperarContrasena } from './RecuperarContrasena';
 
 export function Login() {
   const [nombre, setNombre] = useState('');
   const [contraseña, setContraseña] = useState('');
-  const [confirmarContraseña, setConfirmarContraseña] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const [isRegistering, setIsRegistering] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,37 +31,11 @@ export function Login() {
     }
   };
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    if (nombre === '' || contraseña === '' || confirmarContraseña === '') {
-      setError('Por favor, completa todos los campos para registrarte.');
-      return;
-    }
-    if (contraseña !== confirmarContraseña) {
-      setError('Las contraseñas no coinciden.');
-      return;
-    }
-
-    const nuevoUsuario = { nombre, contraseña };
-    localStorage.setItem('usuarioRegistrado', JSON.stringify(nuevoUsuario));
-    setError('');
-    alert('Registro exitoso. Ahora inicia sesión.');
-    setIsRegistering(false);
-    setNombre('');
-    setContraseña('');
-    setConfirmarContraseña('');
-  };
-
-  const toggleForm = () => {
-    setIsRegistering(!isRegistering);
-    setError('');
-  };
-
   return (
     <main className="font-sans bg-indigo-100 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="bg-marian-blue/20 flex flex-col gap-8 backdrop-filter backdrop-blur-lg min-w-96 p-10 rounded-lg shadow-lg">
         <h2 className="font-bold text-2xl text-black text-center mb-6">
-          {isRegistering ? 'Crear Cuenta' : 'Iniciar Sesión'}
+          Iniciar Sesión
         </h2>
 
         {error && (
@@ -74,7 +45,7 @@ export function Login() {
           </div>
         )}
 
-        <form className="space-y-6" onSubmit={isRegistering ? handleRegister : handleSubmit}>
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">
               Nombre de usuario
@@ -105,26 +76,9 @@ export function Login() {
             </div>
           </div>
 
-          {isRegistering && (
-            <div>
-              <label htmlFor="confirmarContraseña" className="block text-sm font-medium text-gray-700">
-                Confirmar Contraseña
-              </label>
-              <div className="mt-1">
-                <Input
-                  id="confirmarContraseña"
-                  type="password"
-                  value={confirmarContraseña}
-                  onChange={(e) => setConfirmarContraseña(e.target.value)}
-                  required
-                />
-              </div>
-            </div>
-          )}
-
           <div>
             <Button type="submit" className="w-full text-white">
-              {isRegistering ? 'Crear Cuenta' : 'Iniciar Sesión'}
+              Iniciar Sesión
             </Button>
           </div>
         </form>
@@ -137,16 +91,16 @@ export function Login() {
             ¿Olvidaste tu contraseña?
           </Link>
 
-          <button
-            onClick={toggleForm}
-            className="font-medium text-sm text-indigo-900 hover:text-indigo-600"
-          >
-            {isRegistering
-              ? '¿Ya tienes una cuenta? Inicia sesión'
-              : '¿No tienes cuenta? Regístrate'}
-          </button>
+          <div>
+            <Link
+              to="/register"
+              className="font-medium text-sm text-indigo-900 hover:text-indigo-600"
+            >
+              ¿No tienes cuenta? Regístrate aquí
+            </Link>
+          </div>
         </div>
-    </div>
-    </main >
+      </div>
+    </main>
   );
 }

@@ -36,8 +36,9 @@ const SurveyForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setRespuestas({ ...respuestas, [name]: value });
+    setRespuestas(prev => ({ ...prev, [name]: value }));
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,11 +48,11 @@ const SurveyForm = () => {
   };
 
   const SectionContainer = ({ id, title, children }) => (
-    <div className="bg-white border-2 border-gray-200 rounded-2xl shadow-lg mb-6 overflow-hidden">
+    <div className="bg-white border-2 border-gray-200 rounded-2xl shadow-lg mb-6 overflow-hidden ">
       <button
         type="button"
         onClick={() => toggleSection(id)}
-        className="w-full flex justify-between items-center px-6 py-4 text-left text-xl font-semibold text-gray-700 bg-blue-50 hover:bg-blue-100 transition-colors"
+        className="w-full flex justify-between items-center px-6 py-4 text-left text-xl font-semibold text-gray-700 bg-blue-50 hover:bg-blue-100 transition-colors cursor-pointer rounded-lg"
       >
         {title}
         {openSection === id ? (

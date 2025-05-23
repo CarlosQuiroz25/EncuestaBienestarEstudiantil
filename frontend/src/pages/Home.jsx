@@ -1,4 +1,6 @@
 import { CardServicio } from '@/components/CardServicio'
+import { Link } from 'react-router-dom';
+import { Button } from '../components/botton/botton';
 
 export const Home = () => {
   const serviciosDestacados = [
@@ -23,7 +25,7 @@ export const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-grisClaro">
+    <div className="min-h-screen flex flex-col bg-grisClaro h-full pb-30">
       <main className="flex-grow">
         {/* Sección de Bienvenida */}
         <section
@@ -35,9 +37,11 @@ export const Home = () => {
             <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-700">
               Apoyamos tu desarrollo académico, emocional y social durante tu vida universitaria.
             </p>
-            <button className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-bold text-lg hover:bg-indigo-700 transition">
-              Conoce nuestros servicios
-            </button>
+            <Link to= "/register">
+            <Button className="w-full text-white">
+              Regístrate
+            </Button>
+            </Link>
           </div>
         </section>
 

@@ -13,7 +13,7 @@ export const CardServicio = ({ servicio }) => {
           <span className="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">
             {servicio.categoria === 'salud' ? 'Salud' : 'Académico'}
           </span>
-          <button className="text-indigo-600 hover:text-indigo-800 font-medium">
+          <button className="text-indigo-600 hover:text-indigo-800 font-medium cursor-pointer">
             Ver detalles →
           </button>
         </div>
