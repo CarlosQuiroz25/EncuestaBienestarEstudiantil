@@ -10,9 +10,9 @@ export const Footer = () => {
             <div>
               <h4 className="text-lg font-semibold mb-4">Enlaces rápidos</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-300 hover:text-white">Servicios</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white">Agenda</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white">Contacto</a></li>
+                <li><a href="/servicios" className="text-gray-300 hover:text-white">Servicios</a></li>
+                <li><a href="/agenda" className="text-gray-300 hover:text-white">Agenda</a></li>
+                <li><a href="/contacto" className="text-gray-300 hover:text-white">Contacto</a></li>
               </ul>
             </div>
             <div>
