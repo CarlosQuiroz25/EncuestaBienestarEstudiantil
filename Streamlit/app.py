@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 from utils.data_analysis import *
+from utils.depression_analysis import *
 
 # Configuración de la página
 st.set_page_config(
@@ -1009,7 +1010,30 @@ def grafics_page():
             st.plotly_chart(fig_homogeneidad, use_container_width=True)
 
 st.sidebar.title("Navegación")
-page = st.sidebar.radio('Selecciona una página', ['Página Principal', 'Análisis de Encuestas', 'Graficos'])
+page = st.sidebar.radio('Selecciona una página', ['Página Principal', 'Análisis de Encuestas', 'Graficos', 'Análisis de Depresión'])
+
+def depression_page():
+    st.title("🧠 Análisis de Depresión Estudiantil")
+    
+    # Cargar los datos
+    df_depresion = cargar_datos_depresion()
+    
+    if df_depresion is not None:
+        # Mostrar resumen de datos
+        st.markdown("""
+        ### 📊 Análisis de Factores de Salud Mental y Bienestar
+        
+        Esta sección explora la relación entre diversos factores de estilo de vida, estrés y salud mental en estudiantes.
+        """)
+        
+        # Mostrar los análisis
+        analizar_salud_mental(df_depresion)
+        analizar_estilo_vida(df_depresion)
+        analizar_factores_estres(df_depresion)
+        mostrar_datos_brutos(df_depresion)
+        generar_conclusiones(df_depresion)
+    else:
+        st.error("No se pudieron cargar los datos de depresión. Por favor, verifica que el archivo exista.")
 
 if page == 'Página Principal':
     main_page()
@@ -1017,3 +1041,5 @@ elif page == 'Análisis de Encuestas':
     analysis_page()
 elif page == 'Graficos':
     grafics_page()
+else:
+    depression_page()
