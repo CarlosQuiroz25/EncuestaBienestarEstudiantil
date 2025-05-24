@@ -22,7 +22,7 @@ export const CardServicio = ({ servicio }) => {
             {servicio.categoria === 'salud' ? 'Salud' : 'Académico'}
           </span>
           <button
-            className="text-indigo-600 hover:text-indigo-800 font-medium"
+            className="text-indigo-600 hover:text-indigo-800 font-medium cursor-pointer"
             onClick={handleVerDetalles}
           >
             Ver detalles →
