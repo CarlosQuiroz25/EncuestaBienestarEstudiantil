@@ -65,20 +65,20 @@ export const Servicios = () => {
     },
     {
       id: 7,
-      titulo: 'Orientación Vocacional',
-      descripcion: 'Descubre tus intereses y habilidades para tomar decisiones informadas sobre tu futuro profesional.',
-      categoria: 'academico',
-      icono: '🧭',
-      iconoFa: <FaGraduationCap className="text-yellow-500" />,
+      titulo: 'Asesoría Financiera para Estudiantes',
+      descripcion: 'Aprende a gestionar tu presupuesto, ahorrar dinero y planificar tus finanzas personales para un futuro más seguro.',
+      categoria: 'bienestar',
+      icono: '💰',
+      iconoFa: <FaHandsHelping className="text-green-500" />,
       destacado: true,
     },
     {
       id: 8,
-      titulo: 'Charlas de Nutrición',
-      descripcion: 'Consejos prácticos para una alimentación saludable que impulse tu energía y bienestar.',
-      categoria: 'salud',
-      icono: '🍎',
-      iconoFa: <FaHeartbeat className="text-lime-500" />,
+      titulo: 'Taller de Habilidades de Comunicación',
+      descripcion: 'Mejora tus habilidades de comunicación interpersonal y profesional para destacar en cualquier entorno.',
+      categoria: 'academico',
+      icono: '🗣️',
+      iconoFa: <FaGraduationCap className="text-orange-500" />,
       destacado: false,
     },
   ];
@@ -108,19 +108,19 @@ export const Servicios = () => {
         {/* Se le pasa el filtro y el setter para que pueda cambiar el estado */}
         <FiltrosServicios filtro={filtro} setFiltro={setFiltro} />
 
-        
+
 
         {/* Listado de Servicios Filtrados */}
         <div className="mt-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {serviciosFiltrados.map(servicio => (
-                    <CardServicio
-                        key={servicio.id}
-                        servicio={servicio}
-                        isFeatured={servicio.destacado} // Pasa el estado destacado a la Card
-                    />
-                ))}
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {serviciosFiltrados.map(servicio => (
+              <CardServicio
+                key={servicio.id}
+                servicio={servicio}
+                isFeatured={servicio.destacado} // Pasa el estado destacado a la Card
+              />
+            ))}
+          </div>
         </div>
 
 

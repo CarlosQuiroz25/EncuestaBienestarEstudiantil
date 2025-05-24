@@ -4,6 +4,8 @@ import SaludFisica from '../assets/SaludFisica.jpg';
 import OrientacionVocacional from '../assets/OrientacionVocacional.jpg';
 import HabilidadesBlandas from '../assets/HabilidadesBlandas.jpg';
 import ApoyoSocioeconomico from '../assets/ApoyoSocioeconomico.png';
+import AsesoriaFinanciera from '../assets/AsesoriaFinanciera.jpg';
+import HabilidadesComunicacion from '../assets/HabilidadesComunicacion.jpg';
 
 const servicios = [
   {
@@ -104,7 +106,42 @@ Participa en actividades dinámicas y recibe retroalimentación para tu crecimie
     imagen: ApoyoSocioeconomico,
     detalle: `El área de apoyo socioeconómico brinda información y acompañamiento en la gestión de becas, ayudas y subsidios para estudiantes.
 Te orientamos en los requisitos, plazos y documentación necesaria para acceder a los diferentes beneficios disponibles.`
+  },
+  {
+    id: "7",
+    titulo: 'Asesoría Financiera para Estudiantes',
+    descripcion: 'Aprende a gestionar tu presupuesto, ahorrar dinero y planificar tus finanzas personales para un futuro más seguro.',
+    icono: '🧭',
+    categoria: 'academico',
+    destacado: true,
+    beneficios: [
+      "Talleres de educación financiera",
+      "Asesoría personalizada",
+      "Herramientas de gestión"
+    ],
+    imagen: AsesoriaFinanciera,
+    detalle: `La asesoría financiera para estudiantes te brinda herramientas y conocimientos para gestionar tu dinero de manera efectiva.
+Aprende a elaborar un presupuesto, ahorrar para tus metas y tomar decisiones financieras informadas.
+Ofrecemos talleres prácticos y asesoría personalizada para que puedas enfrentar los desafíos económicos de la vida universitaria con confianza.`
+  },
+  {
+    id: "8",
+    titulo: ' Taller de Habilidades de Comunicación',
+    descripcion: 'Mejora tus habilidades de comunicación interpersonal y profesional para destacar en cualquier entorno.',
+    icono: '🍎',
+    categoria: 'salud',
+    destacado: false,
+    beneficios: [
+      "Talleres prácticos",
+      "Certificados de participación",
+      "Desarrollo personal"
+    ],
+    imagen: HabilidadesComunicacion,
+    detalle: `Los talleres de habilidades de comunicación están diseñados para mejorar tus capacidades de expresión verbal y no verbal, escucha activa y asertividad.
+Participa en actividades prácticas y dinámicas que te ayudarán a desarrollar una comunicación efectiva en diferentes contextos, desde el ámbito académico hasta el profesional.
+    Aprenderás a transmitir tus ideas de manera clara y persuasiva, así como a establecer relaciones interpersonales más sólidas y efectivas.`
   }
+
 ];
 
 export default servicios;

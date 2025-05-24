@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FaBars, FaTimes, FaUserCircle, FaSearch, FaChevronDown, FaSignOutAlt, FaHome, FaQuestionCircle, FaLaptopCode, FaCalendarAlt, FaEnvelope } from 'react-icons/fa'; // Añadidas más iconos para el menú mobile
-import { AuthContext } from '../context/AuthContext';
+import { FaBars, FaTimes, FaUserCircle, FaChevronDown, FaSignOutAlt, FaHome, FaQuestionCircle, FaLaptopCode, FaCalendarAlt, FaEnvelope } from 'react-icons/fa'; // Añadidas más iconos para el menú mobile
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userDropdown, setUserDropdown] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
@@ -135,18 +133,7 @@ export const Header = () => {
         {/* Menú Mobile (desplegable) */}
         {isOpen && (
           <div className="md:hidden mt-4 pb-4 space-y-3 bg-indigo-700 rounded-lg shadow-xl animate-slideDown overflow-hidden">
-            {/* Buscador mobile */}
-            <form onSubmit={handleSearch} className="flex items-center bg-indigo-600 rounded-full px-4 py-2 mx-4 mt-4 shadow-inner">
-              <button type="submit" className="text-blue-200 hover:text-white transition-colors duration-200 focus:outline-none"><FaSearch /></button>
-              <input
-                type="text"
-                placeholder="Buscar..."
-                className="bg-transparent border-none focus:ring-0 text-white placeholder-blue-200 w-full ml-3 outline-none"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </form>
-
+        
             <nav className="flex flex-col px-4 pt-2 pb-4 space-y-2">
               <Link to="/" className="flex items-center py-2 px-4 rounded-lg transition-all duration-200 hover:bg-indigo-600 hover:text-white" onClick={() => setIsOpen(false)}>
                 <FaHome className="mr-3 text-lg" /> Inicio
@@ -192,3 +179,5 @@ export const Header = () => {
     </header>
   );
 };
+
+
