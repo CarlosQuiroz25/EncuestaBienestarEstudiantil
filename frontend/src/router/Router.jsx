@@ -11,6 +11,7 @@ import { ConfirmacionRecuperacion } from "../pages/ConfirmacionRecuperacion";
 import { PanelAdmin } from "../pages/PanelAdmin";
 import { Register } from '../pages/Register';
 import DetalleServicio from "../pages/DetallesServicio";
+import { Ayuda } from '../pages/Ayuda';
 
 export const routes = [
   {
@@ -44,8 +45,12 @@ export const routes = [
         element: <RecuperarContrasena />,
       },
       {
+        path: "/ayuda",
+        element: <Ayuda />,
+      },
+      {
         path: "*",
-        element:<NoEncontrado/>
+        element: <NoEncontrado />
       },
       {
         path: "/confirmacion-recuperacion",
@@ -53,16 +58,16 @@ export const routes = [
       },
       {
         path: "/panel",
-        element:<PanelAdmin/>,
+        element: <PanelAdmin />,
       },
       {
         path: "/register",
-        element:<Register/>,
+        element: <Register />,
       },
-        {
-       path: "/servicios/:id", 
-       element: <DetalleServicio />,
-       },
+      {
+        path: "/servicios/:id",
+        element: <DetalleServicio />,
+      },
       {
         path: "*",
         element: <div className="text-center py-20"><h1 className="text-4xl font-bold">404 - Página no encontrada</h1></div>,

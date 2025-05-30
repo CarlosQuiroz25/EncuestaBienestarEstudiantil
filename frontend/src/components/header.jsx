@@ -55,39 +55,43 @@ export const Header = () => {
             <nav className="flex space-x-6">
               <Link
                 to="/encuesta"
-                className={`text-lg font-medium relative group ${
-                  location.pathname === '/encuesta' ? 'text-yellow-300' : 'text-white hover:text-blue-200'
-                } transition-colors duration-300`}
+                className={`text-lg font-medium relative group ${location.pathname === '/encuesta' ? 'text-yellow-300' : 'text-white hover:text-blue-200'
+                  } transition-colors duration-300`}
               >
                 Encuesta
                 <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-yellow-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${location.pathname === '/encuesta' ? 'scale-x-100' : ''}`}></span>
               </Link>
               <Link
                 to="/servicios"
-                className={`text-lg font-medium relative group ${
-                  location.pathname === '/servicios' ? 'text-yellow-300' : 'text-white hover:text-blue-200'
-                } transition-colors duration-300`}
+                className={`text-lg font-medium relative group ${location.pathname === '/servicios' ? 'text-yellow-300' : 'text-white hover:text-blue-200'
+                  } transition-colors duration-300`}
               >
                 Servicios
                 <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-yellow-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${location.pathname === '/servicios' ? 'scale-x-100' : ''}`}></span>
               </Link>
               <Link
                 to="/agenda"
-                className={`text-lg font-medium relative group ${
-                  location.pathname === '/agenda' ? 'text-yellow-300' : 'text-white hover:text-blue-200'
-                } transition-colors duration-300`}
+                className={`text-lg font-medium relative group ${location.pathname === '/agenda' ? 'text-yellow-300' : 'text-white hover:text-blue-200'
+                  } transition-colors duration-300`}
               >
                 Agenda
                 <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-yellow-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${location.pathname === '/agenda' ? 'scale-x-100' : ''}`}></span>
               </Link>
               <Link
                 to="/contacto"
-                className={`text-lg font-medium relative group ${
-                  location.pathname === '/contacto' ? 'text-yellow-300' : 'text-white hover:text-blue-200'
-                } transition-colors duration-300`}
+                className={`text-lg font-medium relative group ${location.pathname === '/contacto' ? 'text-yellow-300' : 'text-white hover:text-blue-200'
+                  } transition-colors duration-300`}
               >
                 Contacto
                 <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-yellow-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${location.pathname === '/contacto' ? 'scale-x-100' : ''}`}></span>
+              </Link>
+              <Link
+                to="/ayuda"
+                className={`text-lg font-medium relative group ${location.pathname === '/ayuda' ? 'text-yellow-300' : 'text-white hover:text-blue-200'
+                  } transition-colors duration-300`}
+              >
+                Ayuda
+                <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-yellow-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${location.pathname === '/ayuda' ? 'scale-x-100' : ''}`}></span>
               </Link>
             </nav>
 
@@ -133,7 +137,7 @@ export const Header = () => {
         {/* Menú Mobile (desplegable) */}
         {isOpen && (
           <div className="md:hidden mt-4 pb-4 space-y-3 bg-indigo-700 rounded-lg shadow-xl animate-slideDown overflow-hidden">
-        
+
             <nav className="flex flex-col px-4 pt-2 pb-4 space-y-2">
               <Link to="/" className="flex items-center py-2 px-4 rounded-lg transition-all duration-200 hover:bg-indigo-600 hover:text-white" onClick={() => setIsOpen(false)}>
                 <FaHome className="mr-3 text-lg" /> Inicio
@@ -149,6 +153,9 @@ export const Header = () => {
               </Link>
               <Link to="/contacto" className={`flex items-center py-2 px-4 rounded-lg transition-all duration-200 hover:bg-indigo-600 hover:text-white ${location.pathname === '/contacto' ? 'bg-indigo-600 text-yellow-300' : ''}`} onClick={() => setIsOpen(false)}>
                 <FaEnvelope className="mr-3 text-lg" /> Contacto
+              </Link>
+              <Link to="/ayuda" className={`flex items-center py-2 px-4 rounded-lg transition-all duration-200 hover:bg-indigo-600 hover:text-white ${location.pathname === '/ayuda' ? 'bg-indigo-600 text-yellow-300' : ''}`} onClick={() => setIsOpen(false)}>
+                <FaQuestionCircle className="mr-3 text-lg" /> Ayuda
               </Link>
             </nav>
 
