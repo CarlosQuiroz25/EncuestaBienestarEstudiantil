@@ -14,6 +14,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"        # Sidebar expandido por defecto
 )
 
+st.sidebar.title("Navegación")
+page = st.sidebar.radio('Selecciona una página', ['Página Principal', 'Análisis de Encuestas', 'Graficos','Análisis exploratorio', 'Análisis Depresión estudiantil'])
+
 def main_page():
     # Cargar datos para mostrar métricas en la página principal
     encuestas_df, preguntas_df, respuestas_df = cargar_datos()
@@ -1009,8 +1012,120 @@ def grafics_page():
             )
             st.plotly_chart(fig_homogeneidad, use_container_width=True)
 
-st.sidebar.title("Navegación")
-page = st.sidebar.radio('Selecciona una página', ['Página Principal', 'Análisis de Encuestas', 'Graficos', 'Análisis de Depresión'])
+def exploratory_analysis_page():
+    st.title("🔍 ¿Cómo llegamos a estas conclusiones? - Análisis exploratorio sobre la depresión estudiantil")
+    
+    with st.expander("🔍 1. El inicio: Reuniendo y limpiando los datos"):
+        st.markdown("""
+        ### 📋 De dónde salieron los datos
+        - Usamos un dataset de acceso público sobre salud mental de estudiantes universitarios
+        - La información es completamente anónima, sin datos personales identificables
+        - El dataset incluye respuestas de cientos de estudiantes de diferentes universidades
+        
+        ### 🧹 Limpiando los datos
+        - Primero, como equipo organizamos toda la información en un formato manejable
+        - Tradujimos todo al español para que fuera accesible para más personas
+        - Tuvimos que estandarizar respuestas (¡siempre hay casos curiosos como poner '123' en lugar de la edad!)
+        - Unificamos términos similares, como cuando algunos ponían "poco estres" y otros "estrés bajo"
+        
+        ### 📊 Lo que terminamos analizando:
+        - Cuánto duermen los estudiantes?
+        - Cómo se alimentan?
+        - Si tienen problemas de dinero
+        - Si en su familia hay historial de problemas mentales
+        - Cómo se sienten emocionalmente?
+        """)
+    
+    with st.expander("📈 2. Empezando a ver patrones"):
+        st.markdown("""
+        ### 🔍 Lo primero que notamos
+        - Hicimos gráficos de todo para ver si saltaba algo a la vista
+        - Notamos que algunos factores parecían estar relacionados con la depresión
+        - Notamos que los que duermen menos tienen más depresión
+        - Notamos que los que tienen problemas de dinero tienen más depresión
+        
+        ### 🛠️ Nuestras herramientas
+        - Usamos Python (con pandas, matplotlib y otras bibliotecas) para los análisis
+        - Creamos visualizaciones interactivas para entender mejor los patrones
+        """)
+    
+    with st.expander("💤 3. El tema del sueño"):
+        st.markdown("""
+        ### 😴 Dormir es sagrado... pero casi nadie lo hace bien
+        - Vimos que muchos estudiantes duermen MUY poco, tipo 4-5 horas
+        - Lo impactante: casi el 70% de los que duermen menos de 5 horas reportan síntomas de depresión
+        - Los que duermen sus 7-8 horas están mucho mejor emocionalmente
+        
+        ### 🤔 Nuestra hipótesis
+        Como equipo, creemos que es un círculo vicioso: la depresión afecta el sueño, y la falta de sueño empeora la depresión.
+        ¡Y cuando llegan los exámenes finales, la situación se complica aún más!
+        """)
+    
+    with st.expander("🍎 4. La comida importa (y más de lo que crees)"):
+        st.markdown("""
+        ### 🥗 Lo que descubrimos sobre la alimentación
+        - Los que comen más comida chatarra tienden a sentirse peor
+        - No es solo lo que comes, sino cuándo (¡muchos se saltan el desayuno!)
+        - Los que intentan comer balanceado, aunque sea a veces, reportan mejor estado de ánimo
+        
+        ### 💡 Un hallazgo interesante
+        Entre los datos más curiosos que encontramos: los estudiantes que cocinan su propia comida 
+        (aunque sea algo sencillo) reportan menos síntomas de depresión. Como equipo, discutimos que 
+        podría deberse al sentimiento de logro y control sobre su vida.
+        """)
+    
+    with st.expander("💰 5. El dinero y el estrés"):
+        st.markdown("""
+        ### 😰 La plata sí importa
+        - No es sorpresa: a más problemas económicos, más estrés y depresión
+        - Lo que nos sorprendió: no es solo cuánto dinero tienes, sino cómo lo manejas
+        - Los que hacen presupuesto (aunque sea simple) están menos estresados
+        
+        ### 📚 La doble carga
+        Muchos trabajan y estudian, y eso aumenta mucho el estrés. 
+        ¡Algunos trabajan hasta 30 horas a la semana además de estudiar tiempo completo!
+        """)
+    
+    with st.expander("👨‍👩‍👧 6. La familia y las relaciones"):
+        st.markdown("""
+        ### ❤️ El apoyo es clave
+        - Tener a alguien con quien hablar hace una GRAN diferencia
+        - Los que se sienten solos tienen tasas más altas de depresión
+        - El historial familiar de problemas mentales es un factor importante
+        
+        ### 🌟 Lo positivo
+        Incluso con factores de riesgo, el apoyo social puede ser un gran protector. 
+        ¡Tus amigos y familia pueden ser tu mejor medicina!
+        """)
+    
+    with st.expander("🤔 7. Lo que aprendimos y lo que falta"):
+        st.markdown("""
+        ### 📚 Nuestras conclusiones
+        - Todo está conectado: sueño, comida, dinero, relaciones...
+        - Pequeños cambios pueden hacer una gran diferencia
+        - La salud mental es tan importante como la física
+        
+        ### 🚫 Limitaciones de nuestra investigación
+        - Es solo una foto en el tiempo, no podemos decir qué causa qué
+        - Algunos estudiantes no respondieron todo
+        - Cada persona es diferente, esto son solo tendencias generales
+        
+        ### 💡 Para pensar
+        Si te sientes identificado con estos problemas, no estás solo. 
+        Habla con alguien, busca ayuda si la necesitas. 
+        ¡Tu salud mental importa!
+        """)
+    
+    st.markdown("""
+    ## Nuestras conclusiones finales
+    
+    Este proyecto de investigación nos abrió los ojos a realidades que muchos estudiantes enfrentan. 
+    Como equipo, aprendimos que a menudo nos enfocamos tanto en las calificaciones que descuidamos 
+    lo más importante: nuestro bienestar integral.
+    
+    Si quieres profundizar en los números y gráficos detallados, te invitamos a revisar la sección 
+    "Análisis Depresión estudiantil". ¡Ahí encontrarás más información! 
+    """)
 
 def depression_page():
     st.title("🧠 Análisis de Depresión Estudiantil")
@@ -1041,5 +1156,8 @@ elif page == 'Análisis de Encuestas':
     analysis_page()
 elif page == 'Graficos':
     grafics_page()
+elif page == 'Análisis exploratorio':
+    exploratory_analysis_page()
 else:
     depression_page()
+
