@@ -81,8 +81,7 @@ export const Agenda = () => {
 
   return (
     <div
-      className="min-h-screen bg-fixed bg-center bg-cover flex flex-col justify-center items-center py-8 px-4 h-full pb-30 "
-      style={{ backgroundImage: "url('/assets/fondo-agenda.jpg')" }}
+      className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-100 bg-fixed bg-center bg-cover flex flex-col justify-center items-center py-8 px-4 h-full pb-30 "
     >
       <div className="w-full max-w-[99rem]  bg-white bg-opacity-95 backdrop-blur-sm rounded-xl shadow-2xl overflow-hidden animate-fade-in-up">
         <header className="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-15 px-8 text-center rounded-t-xl">

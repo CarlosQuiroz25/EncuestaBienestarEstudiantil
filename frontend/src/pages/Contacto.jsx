@@ -6,7 +6,7 @@ export const Contacto = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8 h-full pb-40"> {/* Fondo degradado suave */}
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-16 rounded-xl shadow-2xl mb-12 text-center transform -translate-y-4 animate-fade-in-down"> {/* Cabecera impactante */}
+      <div className="bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-16 rounded-xl shadow-2xl mb-12 text-center transform -translate-y-4 animate-fade-in-down mx-32"> {/* Cabecera impactante */}
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
             <FaComments className="inline-block mr-4 text-blue-200" /> Contáctanos
