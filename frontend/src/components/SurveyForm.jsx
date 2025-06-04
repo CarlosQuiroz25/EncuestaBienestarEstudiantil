@@ -1,6 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '../components/botton/botton';
+
+// 🧱 Componente separado para evitar re-render innecesario
+const SectionContainer = ({ id, title, isOpen, onToggle, children }) => (
+  <div className="bg-white border-2 border-gray-200 rounded-2xl shadow-lg mb-6 overflow-hidden">
+    <button
+      type="button"
+      onClick={() => onToggle(id)}
+      className="w-full flex justify-between items-center px-6 py-4 text-left text-xl font-semibold text-gray-700 bg-blue-50 hover:bg-blue-100 transition-colors cursor-pointer rounded-lg"
+    >
+      {title}
+      {isOpen ? (
+        <ChevronUp className="w-5 h-5 text-blue-500" />
+      ) : (
+        <ChevronDown className="w-5 h-5 text-blue-500" />
+      )}
+    </button>
+    <div
+      className={`transition-all duration-500 ease-in-out px-6 ${
+        isOpen ? 'max-h-[1000px] py-4' : 'max-h-0 overflow-hidden'
+      }`}
+    >
+      {children}
+    </div>
+  </div>
+);
 
 const SurveyForm = () => {
   const [openSection, setOpenSection] = useState(null);
@@ -30,46 +55,33 @@ const SurveyForm = () => {
     dificualtadSocial: '',
   });
 
-  const toggleSection = (id) => {
-    setOpenSection(openSection === id ? null : id);
-  };
+  const toggleSection = useCallback((id) => {
+    setOpenSection((prev) => (prev === id ? null : id));
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setRespuestas(prev => ({ ...prev, [name]: value }));
+    setRespuestas((prev) => ({ ...prev, [name]: value }));
   };
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Respuestas:', respuestas);
     localStorage.setItem('encuesta', JSON.stringify(respuestas));
+     // ✅ Para usar una API en el futuro:
+    // try {
+    //   const response = await fetch('https://tu-api.com/encuesta', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(respuestas),
+    //   });
+    //   const data = await response.json();
+    //   console.log('Respuesta del servidor:', data);
+    // } catch (error) {
+    //   console.error('Error al enviar la encuesta:', error);
+    // } 
     alert('Encuesta enviada con éxito.');
   };
-
-  const SectionContainer = ({ id, title, children }) => (
-    <div className="bg-white border-2 border-gray-200 rounded-2xl shadow-lg mb-6 overflow-hidden ">
-      <button
-        type="button"
-        onClick={() => toggleSection(id)}
-        className="w-full flex justify-between items-center px-6 py-4 text-left text-xl font-semibold text-gray-700 bg-blue-50 hover:bg-blue-100 transition-colors cursor-pointer rounded-lg"
-      >
-        {title}
-        {openSection === id ? (
-          <ChevronUp className="w-5 h-5 text-blue-500" />
-        ) : (
-          <ChevronDown className="w-5 h-5 text-blue-500" />
-        )}
-      </button>
-      <div
-        className={`transition-all duration-500 ease-in-out px-6 ${
-          openSection === id ? 'max-h-[1000px] py-4' : 'max-h-0 overflow-hidden'
-        }`}
-      >
-        {children}
-      </div>
-    </div>
-  );
 
   const renderInput = (label, name, type = 'text', isTextarea = false, options = []) => (
     <div className="space-y-2">
@@ -114,7 +126,7 @@ const SurveyForm = () => {
       <h1 className="text-3xl font-bold text-center text-gray-700 mb-8">Encuesta de Bienestar Estudiantil</h1>
 
       {/* Información Demográfica */}
-      <SectionContainer id="demografica" title="Información Demográfica">
+      <SectionContainer id="demografica" title="Información Demográfica" isOpen={openSection === 'demografica'} onToggle={toggleSection}>
         <div className="grid gap-6">
           {renderInput('¿Cuál es tu edad?', 'edad', 'number')}
           {renderInput('¿Con qué género te identificas?', 'genero', 'select', false, ['masculino', 'femenino', 'No binario', 'prefiero_no_decirlo'])}
@@ -123,7 +135,7 @@ const SurveyForm = () => {
       </SectionContainer>
 
       {/* Salud Física */}
-      <SectionContainer id="fisica" title="Salud Física">
+      <SectionContainer id="fisica" title="Salud Física" isOpen={openSection === 'fisica'} onToggle={toggleSection}>
         <div className="grid gap-6">
           {renderInput('¿Con qué frecuencia realizas actividad física?', 'actividadFisica', 'select', false, ['Diariamente', '3-4 veces por semana', '1-2 veces por semana', 'Casi nunca'])}
           {renderInput('¿Cómo describirías tu dieta?', 'dieta', 'select', false, ['muy_saludable', 'saludable', 'regular', 'poco_saludable'])}
@@ -134,7 +146,7 @@ const SurveyForm = () => {
       </SectionContainer>
 
       {/* Salud Mental */}
-      <SectionContainer id="mental" title="Salud Mental">
+      <SectionContainer id="mental" title="Salud Mental" isOpen={openSection === 'mental'} onToggle={toggleSection}>
         <div className="grid gap-6">
           {renderInput('¿Con qué frecuencia te sientes estresado?', 'estres', 'select', false, ['nunca', 'a_veces', 'frecuentemente', 'todo_el_tiempo'])}
           {renderInput('¿Cómo describirías tu estado de ánimo general?', 'estadoAnimo', 'select', false, ['muy_positivo', 'positivo', 'neutral', 'negativo'])}
@@ -145,7 +157,7 @@ const SurveyForm = () => {
       </SectionContainer>
 
       {/* Hábitos de Estudio */}
-      <SectionContainer id="habitos" title="Hábitos de Estudio">
+      <SectionContainer id="habitos" title="Hábitos de Estudio" isOpen={openSection === 'habitos'} onToggle={toggleSection}>
         <div className="grid gap-6">
           {renderInput('¿Cómo calificarías tu rendimiento académico actual?', 'rendimientoActual', 'select', false, ['Excelente', 'Bueno', 'Regular', 'Deficiente'])}
           {renderInput('¿Cuántas horas estudias al día?', 'horasEstudio', 'select', false, ['Menos de 1 hora', '1-2 horas', '3-4 horas', 'Más de 4 horas'])}
@@ -156,7 +168,7 @@ const SurveyForm = () => {
       </SectionContainer>
 
       {/* Vida Social */}
-      <SectionContainer id="social" title="Vida Social">
+      <SectionContainer id="social" title="Vida Social" isOpen={openSection === 'social'} onToggle={toggleSection}>
         <div className="grid gap-6">
           {renderInput('¿Con qué frecuencia participas en actividades sociales?', 'vidaSocial', 'select', false, ['nunca', 'ocasionalmente', 'frecuentemente', 'siempre'])}
           {renderInput('¿Cómo describirías tu relación con tus compañeros?', 'relacionesCompanieros', 'select', false, ['muy_buena', 'buena', 'neutral', 'mala'])}
@@ -167,9 +179,8 @@ const SurveyForm = () => {
       </SectionContainer>
 
       <Button type="submit">
-  Enviar Encuesta
-</Button>
-
+        Enviar Encuesta
+      </Button>
     </form>
   );
 };
