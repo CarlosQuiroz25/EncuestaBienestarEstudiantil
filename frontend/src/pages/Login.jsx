@@ -1,34 +1,47 @@
-import React, { useState } from 'react';
-import { Input } from '../components/input/input';
-import { Button } from '../components/botton/botton';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Input } from "../components/input/input";
+import { Button } from "../components/botton/botton";
+import { Link, useNavigate } from "react-router-dom";
+import { fechLogin } from "@/api/login";
+
+const schemaLogin = {
+  email: "",
+  contraseña: "",
+};
 
 export function Login() {
-  const [nombre, setNombre] = useState('');
-  const [contraseña, setContraseña] = useState('');
-  const [error, setError] = useState('');
+  const [loginForm, setLoginForm] = useState(schemaLogin);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setLoginForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (nombre === '' || contraseña === '') {
-      setError('Por favor, completa todos los campos.');
+
+    if (loginForm.email === "" || loginForm.contraseña === "") {
+      setError("Por favor, completa todos los campos.");
       return;
     }
 
-    const usuarioGuardado = JSON.parse(localStorage.getItem('usuarioRegistrado'));
-
-    if (
-      usuarioGuardado &&
-      usuarioGuardado.nombre === nombre &&
-      usuarioGuardado.contraseña === contraseña
-    ) {
-      setError('');
-      alert('Inicio de sesión exitoso');
-      navigate('/');
-    } else {
-      setError('Nombre o contraseña incorrectos');
-    }
+    fechLogin({ email: loginForm.email, password: loginForm.contraseña })
+      .then((user) => {
+        localStorage.setItem(
+          "user-bienestar-estudiantil",
+          JSON.stringify(user)
+        );
+        navigate("/");
+        console.log(user);
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   };
 
   return (
@@ -39,7 +52,10 @@ export function Login() {
         </h2>
 
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+          <div
+            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+            role="alert"
+          >
             <strong className="font-bold">Error: </strong>
             <span className="block sm:inline">{error}</span>
           </div>
@@ -47,31 +63,41 @@ export function Login() {
 
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">
-              Nombre de usuario
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Email
             </label>
             <div className="mt-1">
               <Input
-                id="nombre"
+                id="email"
+                name="email"
                 type="text"
-                value={nombre}
-                onChange={(e) => setNombre(e.target.value)}
+                value={loginForm.email}
+                onChange={handleInputChange}
                 required
+                placeholder="Email"
               />
             </div>
           </div>
 
           <div>
-            <label htmlFor="contraseña" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="contraseña"
+              className="block text-sm font-medium text-gray-700"
+            >
               Contraseña
             </label>
             <div className="mt-1">
               <Input
                 id="contraseña"
                 type="password"
-                value={contraseña}
-                onChange={(e) => setContraseña(e.target.value)}
+                name="contraseña"
+                value={loginForm.contraseña}
+                onChange={handleInputChange}
                 required
+                placeholder="Contraseña"
               />
             </div>
           </div>
