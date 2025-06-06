@@ -68,21 +68,40 @@ export const Header = () => {
           {/* Menú Desktop (centro/derecha) */}
           <div className="hidden md:flex items-center space-x-7">
             <nav className="flex space-x-6">
-              <Link
-                to="/encuesta"
-                className={`text-lg font-medium relative group ${
-                  location.pathname === "/encuesta"
-                    ? "text-yellow-300"
-                    : "text-white hover:text-blue-200"
-                } transition-colors duration-300`}
-              >
-                Encuesta
-                <span
-                  className={`absolute bottom-0 left-0 w-full h-0.5 bg-yellow-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${
-                    location.pathname === "/encuesta" ? "scale-x-100" : ""
-                  }`}
-                ></span>
-              </Link>
+              {isLoggedIn && (
+                <>
+                  <Link
+                    to="/encuesta"
+                    className={`text-lg font-medium relative group ${
+                      location.pathname === "/encuesta"
+                        ? "text-yellow-300"
+                        : "text-white hover:text-blue-200"
+                    } transition-colors duration-300`}
+                  >
+                    Encuesta
+                    <span
+                      className={`absolute bottom-0 left-0 w-full h-0.5 bg-yellow-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${
+                        location.pathname === "/encuesta" ? "scale-x-100" : ""
+                      }`}
+                    ></span>
+                  </Link>
+                  <Link
+                    to="/agenda"
+                    className={`text-lg font-medium relative group ${
+                      location.pathname === "/agenda"
+                        ? "text-yellow-300"
+                        : "text-white hover:text-blue-200"
+                    } transition-colors duration-300`}
+                  >
+                    Agenda
+                    <span
+                      className={`absolute bottom-0 left-0 w-full h-0.5 bg-yellow-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${
+                        location.pathname === "/agenda" ? "scale-x-100" : ""
+                      }`}
+                    ></span>
+                  </Link>
+                </>
+              )}
               <Link
                 to="/servicios"
                 className={`text-lg font-medium relative group ${
@@ -95,21 +114,6 @@ export const Header = () => {
                 <span
                   className={`absolute bottom-0 left-0 w-full h-0.5 bg-yellow-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${
                     location.pathname === "/servicios" ? "scale-x-100" : ""
-                  }`}
-                ></span>
-              </Link>
-              <Link
-                to="/agenda"
-                className={`text-lg font-medium relative group ${
-                  location.pathname === "/agenda"
-                    ? "text-yellow-300"
-                    : "text-white hover:text-blue-200"
-                } transition-colors duration-300`}
-              >
-                Agenda
-                <span
-                  className={`absolute bottom-0 left-0 w-full h-0.5 bg-yellow-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${
-                    location.pathname === "/agenda" ? "scale-x-100" : ""
                   }`}
                 ></span>
               </Link>
