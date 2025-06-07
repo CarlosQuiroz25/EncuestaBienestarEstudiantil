@@ -81,6 +81,7 @@ const SurveyForm = () => {
     //   console.error('Error al enviar la encuesta:', error);
     // } 
     alert('Encuesta enviada con éxito.');
+    window.location.reload(); // Refresca la encuesta tras el envío
   };
 
   const renderInput = (label, name, type = 'text', isTextarea = false, options = []) => (

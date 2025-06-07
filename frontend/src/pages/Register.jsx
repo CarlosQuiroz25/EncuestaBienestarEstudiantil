@@ -71,7 +71,7 @@ export function Register() {
               htmlFor="email"
               className="block text-sm font-medium text-gray-700"
             >
-              email
+              Email
             </label>
             <div className="mt-1">
               <Input

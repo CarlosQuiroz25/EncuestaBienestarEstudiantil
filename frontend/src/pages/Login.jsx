@@ -37,6 +37,7 @@ export function Login() {
           JSON.stringify(user)
         );
         navigate("/");
+        window.location.reload(); // Fuerza el refresco de la página
         console.log(user);
       })
       .catch((err) => {
