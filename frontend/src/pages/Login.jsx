@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Input } from "../components/input/input";
 import { Button } from "../components/botton/botton";
 import { Link, useNavigate } from "react-router-dom";
-import { fechLogin } from "@/api/login";
+import { fetchLogin } from "@/api/login";
 
 const schemaLogin = {
   email: "",
@@ -30,7 +30,7 @@ export function Login() {
       return;
     }
 
-    fechLogin({ email: loginForm.email, password: loginForm.contraseña })
+    fetchLogin({ email: loginForm.email, password: loginForm.contraseña })
       .then((user) => {
         localStorage.setItem(
           "user-bienestar-estudiantil",

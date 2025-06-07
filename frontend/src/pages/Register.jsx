@@ -1,38 +1,51 @@
-import React, { useState } from 'react';
-import { Input } from '../components/input/input'; // Asegúrate de que la ruta sea correcta
-import { Button } from '../components/botton/botton'; // Asegúrate de que la ruta sea correcta
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Input } from "../components/input/input"; // Asegúrate de que la ruta sea correcta
+import { Button } from "../components/botton/botton"; // Asegúrate de que la ruta sea correcta
+import { Link, useNavigate } from "react-router-dom";
+import { fetchRegister } from "@/api/register";
+
+const registerSchema = {
+  email: "",
+  password: "",
+  password_confirmation: "",
+};
 
 export function Register() {
-  const [nombre, setNombre] = useState('');
-  const [contraseña, setContraseña] = useState('');
-  const [confirmarContraseña, setConfirmarContraseña] = useState('');
-  const [error, setError] = useState('');
+  const [register, setFormRegister] = useState(registerSchema);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormRegister((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleRegister = (e) => {
     e.preventDefault();
-    if (nombre === '' || contraseña === '' || confirmarContraseña === '') {
-      setError('Por favor, completa todos los campos para registrarte.');
+    if (
+      register.email === "" ||
+      register.password === "" ||
+      register.password_confirmation === ""
+    ) {
+      setError("Por favor, completa todos los campos para registrarte.");
       return;
     }
-    if (contraseña !== confirmarContraseña) {
-      setError('Las contraseñas no coinciden.');
-      return;
-    }
-
-    // Verificar si el usuario ya existe (opcional, pero buena práctica)
-    const usuarioExistente = localStorage.getItem('usuarioRegistrado');
-    if (usuarioExistente && JSON.parse(usuarioExistente).nombre === nombre) {
-      setError('Este nombre de usuario ya está registrado.');
+    if (register.password !== register.password_confirmation) {
+      setError("Las contraseñas no coinciden.");
       return;
     }
 
-    const nuevoUsuario = { nombre, contraseña };
-    localStorage.setItem('usuarioRegistrado', JSON.stringify(nuevoUsuario));
-    setError('');
-    alert('Registro exitoso. Ahora puedes iniciar sesión.');
-    navigate('/login'); // Redirigir al usuario a la página de login después del registro
+    fetchRegister(register)
+      .then(() => {
+        alert("Registrado con exito");
+        navigate("/login");
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   };
 
   return (
@@ -43,7 +56,10 @@ export function Register() {
         </h2>
 
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+          <div
+            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+            role="alert"
+          >
             <strong className="font-bold">Error: </strong>
             <span className="block sm:inline">{error}</span>
           </div>
@@ -51,45 +67,57 @@ export function Register() {
 
         <form className="space-y-6" onSubmit={handleRegister}>
           <div>
-            <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">
-              Nombre de usuario
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
+              email
             </label>
             <div className="mt-1">
               <Input
-                id="nombre"
+                id="email"
                 type="text"
-                value={nombre}
-                onChange={(e) => setNombre(e.target.value)}
+                name="email"
+                value={register.email}
+                onChange={handleInputChange}
                 required
               />
             </div>
           </div>
 
           <div>
-            <label htmlFor="contraseña" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="contraseña"
+              className="block text-sm font-medium text-gray-700"
+            >
               Contraseña
             </label>
             <div className="mt-1">
               <Input
                 id="contraseña"
                 type="password"
-                value={contraseña}
-                onChange={(e) => setContraseña(e.target.value)}
+                name="password"
+                value={register.password}
+                onChange={handleInputChange}
                 required
               />
             </div>
           </div>
 
           <div>
-            <label htmlFor="confirmarContraseña" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="confirmarContraseña"
+              className="block text-sm font-medium text-gray-700"
+            >
               Confirmar Contraseña
             </label>
             <div className="mt-1">
               <Input
                 id="confirmarContraseña"
                 type="password"
-                value={confirmarContraseña}
-                onChange={(e) => setConfirmarContraseña(e.target.value)}
+                name="password_confirmation"
+                value={register.password_confirmation}
+                onChange={handleInputChange}
                 required
               />
             </div>

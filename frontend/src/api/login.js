@@ -1,8 +1,8 @@
 
 const VITE_API_URl  = import.meta.env.VITE_API_URl;
 
-export const fechLogin = async ({ email, password }) => {
-    const response = await fetch(`https://proyecto-integrador-api.onrender.com/api/auth/login`, {
+export const fetchLogin = async ({ email, password }) => {
+    const response = await fetch(`${VITE_API_URl}/api/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
