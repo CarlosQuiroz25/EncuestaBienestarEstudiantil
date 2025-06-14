@@ -3,8 +3,26 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-from utils.data_analysis import cargar_datos, analizar_salud_mental, crear_grafico_pie, crear_grafico_barras
-from utils.depression_analysis import cargar_datos_depresion
+from utils.data_analysis import (
+    cargar_datos, 
+    analizar_salud_mental, 
+    crear_grafico_pie, 
+    crear_grafico_barras,
+    obtener_estadisticas_basicas,
+    analizar_demograficos,
+    analizar_salud_fisica,
+    identificar_patrones,
+    analizar_habitos_estudio,
+    analizar_vida_social
+)
+from utils.depression_analysis import (
+    cargar_datos_depresion,
+    analizar_salud_mental as analizar_salud_mental_depresion,
+    analizar_estilo_vida,
+    analizar_factores_estres,
+    mostrar_datos_brutos,
+    generar_conclusiones
+)
 
 # Configuración de la página
 st.set_page_config(
@@ -1197,7 +1215,7 @@ def depression_page():
         """)
         
         # Mostrar los análisis
-        analizar_salud_mental(df_depresion)
+        analizar_salud_mental_depresion(df_depresion)
         analizar_estilo_vida(df_depresion)
         analizar_factores_estres(df_depresion)
         mostrar_datos_brutos(df_depresion)
