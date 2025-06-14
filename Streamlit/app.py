@@ -3,8 +3,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-from utils.data_analysis import *
-from utils.depression_analysis import *
+from utils.data_analysis import cargar_datos, analizar_salud_mental, crear_grafico_pie, crear_grafico_barras
+from utils.depression_analysis import cargar_datos_depresion
 
 # Configuración de la página
 st.set_page_config(
@@ -606,7 +606,7 @@ def grafics_page():
         elif categoria_analisis == "Salud Mental":
             st.subheader("🧠 Análisis de Salud Mental")
             
-            # Análisis de salud mental
+            # Análisis de salud mental usando las respuestas de la encuesta
             datos_mental = analizar_salud_mental(respuestas_df, preguntas_df)
             
             if datos_mental:
@@ -618,6 +618,61 @@ def grafics_page():
                 
                 # Visualizar datos de la pregunta seleccionada
                 datos_pregunta = datos_mental[pregunta_mental]
+                
+                # Convertir a DataFrame para mejor manipulación
+                df_respuestas = pd.DataFrame({
+                    'Respuesta': datos_pregunta.keys(),
+                    'Cantidad': datos_pregunta.values()
+                })
+                
+                # Calcular total de respuestas
+                total = df_respuestas['Cantidad'].sum()
+                
+                # Mostrar estadísticas básicas
+                st.metric("Total de respuestas", total)
+                
+                # Selector de tipo de visualización
+                tipo_viz = st.radio(
+                    "Tipo de visualización:",
+                    ["Gráfico de pastel", "Gráfico de barras", "Distribución visual"]
+                )
+                
+                if tipo_viz == "Gráfico de pastel":
+                    # Gráfico de pastel
+                    fig_mental_pie = crear_grafico_pie(
+                        df_respuestas.set_index('Respuesta')['Cantidad'].to_dict(),
+                        f"Distribución de respuestas: {pregunta_mental}"
+                    )
+                    st.plotly_chart(fig_mental_pie, use_container_width=True)
+                
+                elif tipo_viz == "Gráfico de barras":
+                    # Gráfico de barras
+                    fig_mental = crear_grafico_barras(
+                        df_respuestas.set_index('Respuesta')['Cantidad'].to_dict(),
+                        f"{pregunta_mental}",
+                        "Respuesta",
+                        "Cantidad"
+                    )
+                    st.plotly_chart(fig_mental, use_container_width=True)
+                
+                else:  # Distribución visual
+                    st.markdown("### Distribución visual")
+                    
+                    # Encontrar valor máximo para destacar
+                    max_valor = df_respuestas['Cantidad'].max()
+                    
+                    for idx, row in df_respuestas.iterrows():
+                        porcentaje = row['Cantidad'] / total * 100
+                        
+                        # Destacar el valor máximo si está activado
+                        if row['Cantidad'] == max_valor:
+                            st.markdown(f"**{row['Respuesta']}** 🔥")
+                            st.progress(porcentaje / 100)
+                            st.markdown(f"**{row['Cantidad']} respuestas ({porcentaje:.1f}%)** - *Respuesta más común*")
+                        else:
+                            st.markdown(f"**{row['Respuesta']}**")
+                            st.progress(porcentaje / 100)
+                            st.markdown(f"{row['Cantidad']} respuestas ({porcentaje:.1f}%)")
                 
                 # Convertir a DataFrame para mejor manipulación
                 df_respuestas = pd.DataFrame({
